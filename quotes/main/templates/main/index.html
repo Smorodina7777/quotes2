@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Случайная цитата{% endblock %}
+
+{% block content %}
+    {% if quote %}
+        <div class="quote">
+            <h1 class="quote-text">{{ quote.text }}</h1>
+            <p class="source">Источник: {{ quote.source }}</p>
+            <p class="views">Просмотров: {{ quote.views_count }}</p>
+            <p class="likes">Лайков: {{ quote.likes }}</p>
+            <p class="dislikes">Дизлайков: {{ quote.dislikes }}</p>
+            <div class="buttons">
+                <form method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="quote_id" value="{{ quote.id }}">
+                    <button type="submit" name="like">Лайк</button>
+                </form>
+                <form method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="quote_id" value="{{ quote.id }}">
+                    <button type="submit" name="dislike" class="dislike">Дизлайк</button>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <p>Нет доступных цитат.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Выбрать источник{% endblock %}
+
+{% block content %}
+    <h1>Выбрать источник</h1>
+    <ul>
+        {% for source in sources %}
+            <li><a href="{% url 'quotes_by_source' source.id %}">{{ source.name }}</a></li>
+        {% empty %}
+            <li>Нет доступных источников.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Цитаты по источнику{% endblock %}
+
+{% block content %}
+    <h1>Цитаты по источнику</h1>
+    <ul>
+        {% for quote in quotes %}
+            <li>
+                <p>{{ quote.text }}</p>
+                <p>Источник: {{ quote.source }}</p>
+                <p>Вес: {{ quote.weight }}</p>
+                <a href="{% url 'edit_quote' quote.id %}">Редактировать</a>
+            </li>
+        {% empty %}
+            <li>Нет доступных цитат.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
